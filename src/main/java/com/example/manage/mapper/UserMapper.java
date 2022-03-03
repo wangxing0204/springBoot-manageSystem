@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("select * from user")
-    List<User> findAall();
+    @Select("select name as userName, password from user where name=#{userName} and password=#{password}")
+    List<User> findAall(User user);
 }

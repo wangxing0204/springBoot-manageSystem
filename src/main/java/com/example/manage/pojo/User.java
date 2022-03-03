@@ -3,14 +3,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private int id;
-    private String name;
-    private String passworld;
-
-    public User(int id, String name, String passworld) {
-        this.id = id;
-        this.name = name;
-        this.passworld = passworld;
-    }
+    private String userName;
+    private String password;
 
     public int getId() {
         return id;
@@ -20,28 +14,28 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassworld() {
-        return passworld;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassworld(String passworld) {
-        this.passworld = passworld;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", passworld='" + passworld + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

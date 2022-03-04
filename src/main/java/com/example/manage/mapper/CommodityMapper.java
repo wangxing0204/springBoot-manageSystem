@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CommodityMapper {
 
-    @Insert("insert into commodity(name,price) values(#{name},#{price})")
+    @Insert("insert into commodity(name,price,thumbnail) values(#{name},#{price},#{thumbnail})")
     void addCommodity(Commodity commodity);
 
     @Select("select * from commodity")

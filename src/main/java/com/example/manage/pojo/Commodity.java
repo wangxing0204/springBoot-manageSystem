@@ -7,6 +7,7 @@ public class Commodity implements Serializable {
     private int id;
     private String name;
     private double price;
+    private String thumbnail;
 
     public int getId() {
         return id;
@@ -30,5 +31,13 @@ public class Commodity implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

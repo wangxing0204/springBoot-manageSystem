@@ -2,9 +2,10 @@ package com.example.manage.controller;
 
 
 import com.example.manage.pojo.Commodity;
-import com.example.manage.pojo.User;
 import com.example.manage.service.CommodityService;
 import com.example.manage.utils.ResultUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class CommodityController {
 
     /**
      * 新增
+     *
      * @param commodity
      * @return
      */
@@ -38,6 +40,7 @@ public class CommodityController {
 
     /**
      * 查询
+     *
      * @return
      */
     @RequestMapping("/findAll")
@@ -45,7 +48,7 @@ public class CommodityController {
         List<Commodity> list = null;
         Object object = null;
         try {
-            list=commodityService.getCommodity();
+            list = commodityService.getCommodity();
             object = ResultUtils.successResult(list, "查询成功！");
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,5 +56,26 @@ public class CommodityController {
         }
         return object;
     }
+
+    /**
+     * 分页查询
+     *
+     * @return
+     */
+    @RequestMapping("/findPage")
+    public Object commodityPageInfo(Integer pageNum, Integer pageSize) {
+        Object object = null;
+        try {
+            PageHelper.startPage(pageNum, pageSize); //pageNum：当前页数   pageSize：当前页需要显示的数量
+            List<Commodity> commodityList = commodityService.getCommodity();
+            PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodityList);
+            object = ResultUtils.successResult(pageInfo, "查询成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            object = ResultUtils.errorResult();
+        }
+        return object;
+    }
+
 
 }

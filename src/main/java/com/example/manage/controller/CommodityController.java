@@ -40,7 +40,7 @@ public class CommodityController {
      * 查询
      * @return
      */
-    @RequestMapping("/get")
+    @RequestMapping("/findAll")
     public Object getCommodity() {
         List<Commodity> list = null;
         Object object = null;

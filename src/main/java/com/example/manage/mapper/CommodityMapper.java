@@ -1,6 +1,7 @@
 package com.example.manage.mapper;
 
 import com.example.manage.pojo.Commodity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -15,4 +16,10 @@ public interface CommodityMapper {
 
     @Select("select * from commodity")
     List<Commodity> getCommodity();
+
+    @Delete("delete from commodity where id=#{id}")
+    int deleteCommodity(Integer id);
+
+    @Select("select * from commodity where name like concat('%',#{search},'%')")
+    List<Commodity> commodityPageInfo(String search);
 }

@@ -7,7 +7,9 @@ import com.example.manage.utils.ResultUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -63,13 +65,31 @@ public class CommodityController {
      * @return
      */
     @RequestMapping("/findPage")
-    public Object commodityPageInfo(Integer pageNum, Integer pageSize) {
+    public Object commodityPageInfo(Integer pageNum, Integer pageSize,String search) {
         Object object = null;
         try {
             PageHelper.startPage(pageNum, pageSize); //pageNum：当前页数   pageSize：当前页需要显示的数量
-            List<Commodity> commodityList = commodityService.getCommodity();
+            List<Commodity> commodityList = commodityService.commodityPageInfo(search);
             PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodityList);
             object = ResultUtils.successResult(pageInfo, "查询成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            object = ResultUtils.errorResult();
+        }
+        return object;
+    }
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    public Object deleteCommodity(Integer id) {
+        Object object = null;
+        try {
+            int del = commodityService.deleteCommodity(id);
+            object = ResultUtils.successResult(null, "删除成功！");
         } catch (Exception e) {
             e.printStackTrace();
             object = ResultUtils.errorResult();

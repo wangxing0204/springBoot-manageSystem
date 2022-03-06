@@ -24,4 +24,14 @@ public class CommodityServiceImpl implements CommodityService {
         return commodityMapper.getCommodity();
     }
 
+    @Override
+    public int deleteCommodity(Integer id) {
+        return commodityMapper.deleteCommodity(id);
+    }
+
+    @Override
+    public List<Commodity> commodityPageInfo(String search) {
+        return commodityMapper.commodityPageInfo(search);
+    }
+
 }
